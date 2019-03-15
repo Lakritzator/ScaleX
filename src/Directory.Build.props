@@ -1,0 +1,34 @@
+﻿<Project>
+  <PropertyGroup>
+    <Copyright>Copyright © Greenshot 2004-2018</Copyright>
+    <Authors>Robin Krom</Authors>
+    <PackageIconUrl>https://getgreenshot.org/favicon.ico</PackageIconUrl>
+    <RepositoryUrl>https://github.com/lakritzator/scalex</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseUrl>https://www.gnu.org/licenses/gpl.html</PackageLicenseUrl>
+    <LangVersion>latest</LangVersion>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <AssemblySearchPaths Condition="'$(TargetFramework)' == 'net472'">{HintPathFromItem};{TargetFrameworkDirectory};{RawFileName};{GAC};</AssemblySearchPaths>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <OsProductName>$(registry:HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion@ProductName)</OsProductName>
+    <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
+    <ExtrasEnableWinFormsProjectSetup>true</ExtrasEnableWinFormsProjectSetup>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>True</DebugSymbols>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <DebugType>Full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>True</DebugSymbols>
+  </PropertyGroup>
+</Project>
