@@ -21,9 +21,7 @@
 
 #endregion
 
-#region Usings
-
-#endregion
+using System.Drawing;
 
 namespace ScaleX.Legacy.Scaler.FastBitmap
 {

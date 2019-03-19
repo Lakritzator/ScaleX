@@ -21,16 +21,17 @@
 
 #endregion
 
-#region Usings
-
-#endregion
+using System.Drawing;
+using System.Drawing.Imaging;
+using Dapplo.Windows.Common.Structs;
+using System;
 
 namespace ScaleX.Legacy.Scaler.FastBitmap
 {
-	/// <summary>
-	///     The factory class for the fast bitmap implementation
-	/// </summary>
-	public static class FastBitmapFactory
+    /// <summary>
+    ///     The factory class for the fast bitmap implementation
+    /// </summary>
+    public static class FastBitmapFactory
 	{
 		/// <summary>
 		///     Factory for creating a FastBitmap depending on the pixelformat of the source

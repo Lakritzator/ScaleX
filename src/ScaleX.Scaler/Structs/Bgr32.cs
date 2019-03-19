@@ -21,6 +21,9 @@
 
 #endregion
 
+using System;
+using System.Runtime.InteropServices;
+
 namespace ScaleX.Scaler.Structs
 {
     /// <summary>

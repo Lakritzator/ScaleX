@@ -1,4 +1,11 @@
-﻿namespace ScaleX.Benchmarks
+﻿using BenchmarkDotNet.Attributes;
+using ScaleX.Legacy.Scaler;
+using ScaleX.Scaler;
+using ScaleX.Scaler.Structs;
+using System.Drawing;
+using System.Drawing.Imaging;
+
+namespace ScaleX.Benchmarks
 {
     /// <summary>
     /// This defines the benchmarks which can be done
@@ -32,27 +39,6 @@
 
 
         //[Benchmark]
-        [Arguments(PixelFormat.Format24bppRgb)]
-        [Arguments(PixelFormat.Format32bppRgb)]
-        [Arguments(PixelFormat.Format32bppArgb)]
-        public void WuQuantizer(PixelFormat pixelFormat)
-        {
-            using (var bitmap = BitmapFactory.CreateEmpty(400, 400, pixelFormat, Color.White))
-            {
-                using (var graphics = Graphics.FromImage(bitmap))
-                using (var pen = new SolidBrush(Color.Blue))
-                {
-                    graphics.FillRectangle(pen, new Rectangle(30, 30, 340, 340));
-                }
-                var quantizer = new WuQuantizer(bitmap);
-                using (var quantizedImage = quantizer.GetQuantizedImage())
-                {
-                    quantizedImage.Save(@"quantized.png", ImageFormat.Png);
-                }
-            }
-        }
-
-        //[Benchmark]
         public void Blur_FastBitmap()
         {
             using (var bitmap = BitmapFactory.CreateEmpty(400, 400, PixelFormat.Format32bppRgb, Color.White))
@@ -83,20 +69,6 @@
             }
         }
 
-
-        //[Benchmark]
-        public void Blur_Old()
-        {
-            using (var bitmap = BitmapFactory.CreateEmpty(400, 400, PixelFormat.Format32bppRgb, Color.White))
-            {
-                using (var graphics = Graphics.FromImage(bitmap))
-                using (var pen = new SolidBrush(Color.Blue))
-                {
-                    graphics.FillRectangle(pen, new Rectangle(30, 30, 340, 340));
-                }
-                bitmap.ApplyOldBoxBlur(10);
-            }
-        }
 
         [Benchmark]
         public void Scale2x_FastBitmap()

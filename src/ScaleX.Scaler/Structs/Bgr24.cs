@@ -1,4 +1,6 @@
-﻿namespace ScaleX.Scaler.Structs
+﻿using System.Runtime.InteropServices;
+
+namespace ScaleX.Scaler.Structs
 {
     /// <summary>
     /// A struct with the BGR values for a 24bit pixel

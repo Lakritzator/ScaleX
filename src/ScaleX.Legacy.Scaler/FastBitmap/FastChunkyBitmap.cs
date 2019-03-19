@@ -25,12 +25,17 @@
 
 #endregion
 
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using Dapplo.Windows.Common.Structs;
+
 namespace ScaleX.Legacy.Scaler.FastBitmap
 {
-	/// <summary>
-	///     This is the implementation of the FastBitmat for the 8BPP pixelformat
-	/// </summary>
-	public unsafe class FastChunkyBitmap : FastBitmapBase
+    /// <summary>
+    ///     This is the implementation of the FastBitmat for the 8BPP pixelformat
+    /// </summary>
+    public unsafe class FastChunkyBitmap : FastBitmapBase
 	{
 		private readonly Dictionary<Color, byte> _colorCache = new Dictionary<Color, byte>();
 		// Used for indexed images

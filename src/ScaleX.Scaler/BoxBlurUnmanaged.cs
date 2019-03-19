@@ -22,6 +22,8 @@
 #endregion
 
 using ScaleX.Scaler.Structs;
+using System;
+using System.Threading.Tasks;
 
 namespace ScaleX.Scaler
 {

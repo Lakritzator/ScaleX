@@ -21,9 +21,9 @@
 
 #endregion
 
-#region Usings
-
-#endregion
+using Dapplo.Windows.Common.Structs;
+using System;
+using System.Drawing;
 
 namespace ScaleX.Legacy.Scaler.FastBitmap
 {

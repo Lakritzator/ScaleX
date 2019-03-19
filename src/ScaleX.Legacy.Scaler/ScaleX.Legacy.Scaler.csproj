@@ -6,6 +6,8 @@
 	<LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Dapplo.Log" Version="1.3.11" />
+    <PackageReference Include="Dapplo.Windows.Common" Version="0.8.17" />
     <PackageReference Include="Microsoft.Windows.Compatibility" Version="2.0.1" />
   </ItemGroup>
 

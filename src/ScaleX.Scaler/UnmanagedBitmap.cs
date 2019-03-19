@@ -22,6 +22,11 @@
 #endregion
 
 using ScaleX.Scaler.Structs;
+using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace ScaleX.Scaler
 {

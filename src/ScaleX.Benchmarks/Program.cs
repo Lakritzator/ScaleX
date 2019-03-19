@@ -21,6 +21,9 @@
 
 #endregion
 
+using BenchmarkDotNet.Running;
+using System;
+
 namespace ScaleX.Benchmarks
 {
     /// <summary>

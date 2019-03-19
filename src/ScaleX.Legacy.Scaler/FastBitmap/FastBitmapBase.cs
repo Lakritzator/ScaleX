@@ -25,12 +25,18 @@
 
 #endregion
 
+using Dapplo.Windows.Common.Extensions;
+using Dapplo.Windows.Common.Structs;
+using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+
 namespace ScaleX.Legacy.Scaler.FastBitmap
 {
-	/// <summary>
-	///     The base class for the fast bitmap implementation
-	/// </summary>
-	public abstract unsafe class FastBitmapBase : IFastBitmapWithClip, IFastBitmapWithOffset
+    /// <summary>
+    ///     The base class for the fast bitmap implementation
+    /// </summary>
+    public abstract unsafe class FastBitmapBase : IFastBitmapWithClip, IFastBitmapWithOffset
 	{
 		protected const int PixelformatIndexA = 3;
 		protected const int PixelformatIndexR = 2;

@@ -8,4 +8,8 @@
     <PackageReference Include="BenchmarkDotNet" Version="0.11.4" />
     <PackageReference Include="Microsoft.DotNet.PlatformAbstractions" Version="2.1.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ScaleX.Legacy.Scaler\ScaleX.Legacy.Scaler.csproj" />
+    <ProjectReference Include="..\ScaleX.Scaler\ScaleX.Scaler.csproj" />
+  </ItemGroup>
 </Project>
