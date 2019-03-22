@@ -5,7 +5,7 @@ This repository is used to see what implementation of the ScaleX algorithm is th
 This code will Scale a bitmap 2 or 3 times with the algorithm described here: https://www.scale2x.it/algorithm
 
 This implementation is used by Greenshot, to scale the icons for HighDPI screens so they are not so small.
-It should only solve a temporary issue, until Greenshot can use vector graphics.
+It should only solve a temporary issue, until Greenshot can use vector graphics...
 
 The reason to place it in this repository, is to see & discus what tricks can be used to optimize the code.
 
@@ -14,10 +14,12 @@ Change the solution to Release.
 The ScaleX.Benchmarks has the benchmarks, set this as startup project.
 Run with Ctrl+F5
 
-The Scale2x_FastBitmap and Scale3x_FastBitmap tests are for the old and "current Greenshot code, using an implementation to directly go to the bitmap raw data.
+The Scale2x_FastBitmap and Scale3x_FastBitmap tests are for the old and "current" Greenshot code, using an implementation to directly go to the bitmap raw data. **It uses Parallel.ForEach, and thus blocks the CPU.**
 
-The tests Scale2x_Unmanaged_Reference & Scale3x_Unmanaged_Reference use my initial code using Span<T>, this is used as a reference.
-The Scale2x_Unmanaged & Scale3x_Unmanaged is used to make improvements, a few changes are already in there, using refs, which does seem to improve a bit.
+The new implementation uses Span<T> and is using a single thread, which is faster and uses less CPU power. They also don't directly use System.Drawing.Bitmap, as an experiment.
+
+The tests Scale2x_Unmanaged_Reference & Scale3x_Unmanaged_Reference use my initial code , this is used as a reference.
+The Scale2x_Unmanaged & Scale3x_Unmanaged is a copy of the reference implementation, used to make improvements and being able to compare them, a few changes are already in there, using refs, which does seem to improve a bit.
 
 Besides being curious about what performance improvements are possible, one question does bother me:
 When running on **.NET 472** I noticed a huge increase vs dotnet core 3.0 in the Scale3x_Unmanaged memory usage (from 56 B to 4096 B), I would love to understand why!
