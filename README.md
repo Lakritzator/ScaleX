@@ -36,3 +36,44 @@ Intel Core i5-7300U CPU 2.60GHz (Kaby Lake), 1 CPU, 4 logical and 2 physical cor
 
 The Scale2x_FastBitmap and Scale3x_FastBitmap is the old and "current Greenshot code.
 The Scale2x_Unmanaged & Scale3x_Unmanaged is the new code, whereas Scale2x_Unmanaged_Reference is just a copy of Scale2x_Unmanaged for reference so we can see if there is a different after changing.
+
+
+Running it on an old *Windows 7* PC:
+
+``` ini
+
+BenchmarkDotNet=v0.11.4, OS=Windows 7 SP1 (6.1.7601.0)
+Intel Core i5-2400 CPU 3.10GHz (Sandy Bridge), 1 CPU, 4 logical and 4 physical cores
+Frequency=3020634 Hz, Resolution=331.0563 ns, Timer=TSC
+.NET Core SDK=3.0.100-preview4-010937
+  [Host]     : .NET Core 3.0.0-preview4-27521-07 (CoreCLR 4.6.27521.73, CoreFX 4.7.19.16407), 64bit RyuJIT
+  DefaultJob : .NET Core 3.0.0-preview4-27521-07 (CoreCLR 4.6.27521.73, CoreFX 4.7.19.16407), 64bit RyuJIT
+```
+
+|                      Method |      Mean |     Error |    StdDev |       Min |       Max | Gen 0/1k Op | Gen 1/1k Op | Gen 2/1k Op | Allocated Memory/Op |
+|---------------------------- |----------:|----------:|----------:|----------:|----------:|------------:|------------:|------------:|--------------------:|
+|          Scale2x_FastBitmap |  7.062 ms | 0.0922 ms | 0.0863 ms |  6.927 ms |  7.189 ms |           - |           - |           - |              2135 B |
+|           Scale2x_Unmanaged |  2.463 ms | 0.0038 ms | 0.0034 ms |  2.456 ms |  2.469 ms |           - |           - |           - |                56 B |
+| Scale2x_Unmanaged_Reference |  2.744 ms | 0.0027 ms | 0.0024 ms |  2.740 ms |  2.749 ms |           - |           - |           - |                56 B |
+|          Scale3x_FastBitmap | 13.829 ms | 0.0870 ms | 0.0771 ms | 13.736 ms | 13.988 ms |           - |           - |           - |              2107 B |
+|           Scale3x_Unmanaged |  5.655 ms | 0.0058 ms | 0.0052 ms |  5.647 ms |  5.666 ms |    500.0000 |      7.8125 |           - |                56 B |
+
+
+``` ini
+BenchmarkDotNet=v0.11.4, OS=Windows 7 SP1 (6.1.7601.0)
+Intel Core i5-2400 CPU 3.10GHz (Sandy Bridge), 1 CPU, 4 logical and 4 physical cores
+Frequency=3020634 Hz, Resolution=331.0563 ns, Timer=TSC
+  [Host]     : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3324.0
+  DefaultJob : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3324.0
+
+```
+|                      Method |      Mean |     Error |    StdDev |       Min |       Max | Gen 0/1k Op | Gen 1/1k Op | Gen 2/1k Op | Allocated Memory/Op |
+|---------------------------- |----------:|----------:|----------:|----------:|----------:|------------:|------------:|------------:|--------------------:|
+|          Scale2x_FastBitmap |  6.903 ms | 0.0308 ms | 0.0273 ms |  6.869 ms |  6.971 ms |           - |           - |           - |              1984 B |
+|           Scale2x_Unmanaged |  3.262 ms | 0.0060 ms | 0.0050 ms |  3.257 ms |  3.275 ms |           - |           - |           - |                64 B |
+| Scale2x_Unmanaged_Reference |  3.668 ms | 0.0066 ms | 0.0059 ms |  3.659 ms |  3.679 ms |           - |           - |           - |                64 B |
+|          Scale3x_FastBitmap | 13.869 ms | 0.0458 ms | 0.0429 ms | 13.798 ms | 13.964 ms |           - |           - |           - |              2048 B |
+|           Scale3x_Unmanaged |  7.383 ms | 0.0119 ms | 0.0105 ms |  7.366 ms |  7.403 ms |    500.0000 |     39.0625 |           - |              4096 B |
+
+Besides being curious about what performance improvements are possible, one question does bother me:
+When running with .NET 472 I noticed a huge increase in the Scale3x_Unmanaged memory usage (from 56 B to 4096 B), I would love to understand why!
