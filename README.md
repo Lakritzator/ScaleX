@@ -56,13 +56,17 @@ Frequency=3020634 Hz, Resolution=331.0563 ns, Timer=TSC
   DefaultJob : .NET Core 3.0.0-preview4-27521-07 (CoreCLR 4.6.27521.73, CoreFX 4.7.19.16407), 64bit RyuJIT
 ```
 
+
 |                      Method |      Mean |     Error |    StdDev |       Min |       Max | Gen 0/1k Op | Gen 1/1k Op | Gen 2/1k Op | Allocated Memory/Op |
 |---------------------------- |----------:|----------:|----------:|----------:|----------:|------------:|------------:|------------:|--------------------:|
-|          Scale2x_FastBitmap |  7.062 ms | 0.0922 ms | 0.0863 ms |  6.927 ms |  7.189 ms |           - |           - |           - |              2135 B |
-|           Scale2x_Unmanaged |  2.463 ms | 0.0038 ms | 0.0034 ms |  2.456 ms |  2.469 ms |           - |           - |           - |                56 B |
-| Scale2x_Unmanaged_Reference |  2.744 ms | 0.0027 ms | 0.0024 ms |  2.740 ms |  2.749 ms |           - |           - |           - |                56 B |
-|          Scale3x_FastBitmap | 13.829 ms | 0.0870 ms | 0.0771 ms | 13.736 ms | 13.988 ms |           - |           - |           - |              2107 B |
-|           Scale3x_Unmanaged |  5.655 ms | 0.0058 ms | 0.0052 ms |  5.647 ms |  5.666 ms |    500.0000 |      7.8125 |           - |                56 B |
+|          Scale2x_FastBitmap |  7.013 ms | 0.1335 ms | 0.1249 ms |  6.843 ms |  7.305 ms |           - |           - |           - |              2140 B |
+|           Scale2x_Unmanaged |  2.482 ms | 0.0027 ms | 0.0024 ms |  2.476 ms |  2.486 ms |           - |           - |           - |                40 B |
+| Scale2x_Unmanaged_Reference |  2.707 ms | 0.0040 ms | 0.0037 ms |  2.702 ms |  2.715 ms |           - |           - |           - |                40 B |
+|          Scale3x_FastBitmap | 13.906 ms | 0.0724 ms | 0.0677 ms | 13.815 ms | 14.050 ms |           - |           - |           - |              2115 B |
+|           Scale3x_Unmanaged |  5.616 ms | 0.0061 ms | 0.0054 ms |  5.605 ms |  5.625 ms |    500.0000 |     39.0625 |           - |                40 B |
+| Scale3x_Unmanaged_Reference |  5.890 ms | 0.0154 ms | 0.0144 ms |  5.857 ms |  5.911 ms |    500.0000 |     46.8750 |           - |                40 B |
+
+
 
 
 ``` ini
@@ -73,10 +77,12 @@ Frequency=3020634 Hz, Resolution=331.0563 ns, Timer=TSC
   DefaultJob : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3324.0
 
 ```
-|                      Method |      Mean |     Error |    StdDev |       Min |       Max | Gen 0/1k Op | Gen 1/1k Op | Gen 2/1k Op | Allocated Memory/Op |
-|---------------------------- |----------:|----------:|----------:|----------:|----------:|------------:|------------:|------------:|--------------------:|
-|          Scale2x_FastBitmap |  6.903 ms | 0.0308 ms | 0.0273 ms |  6.869 ms |  6.971 ms |           - |           - |           - |              1984 B |
-|           Scale2x_Unmanaged |  3.262 ms | 0.0060 ms | 0.0050 ms |  3.257 ms |  3.275 ms |           - |           - |           - |                64 B |
-| Scale2x_Unmanaged_Reference |  3.668 ms | 0.0066 ms | 0.0059 ms |  3.659 ms |  3.679 ms |           - |           - |           - |                64 B |
-|          Scale3x_FastBitmap | 13.869 ms | 0.0458 ms | 0.0429 ms | 13.798 ms | 13.964 ms |           - |           - |           - |              2048 B |
-|           Scale3x_Unmanaged |  7.383 ms | 0.0119 ms | 0.0105 ms |  7.366 ms |  7.403 ms |    500.0000 |     39.0625 |           - |              4096 B |
+
+|                      Method |      Mean |     Error |    StdDev |    Median |       Min |       Max | Gen 0/1k Op | Gen 1/1k Op | Gen 2/1k Op | Allocated Memory/Op |
+|---------------------------- |----------:|----------:|----------:|----------:|----------:|----------:|------------:|------------:|------------:|--------------------:|
+|          Scale2x_FastBitmap |  7.017 ms | 0.1592 ms | 0.3179 ms |  6.851 ms |  6.780 ms |  7.874 ms |           - |           - |           - |              1920 B |
+|           Scale2x_Unmanaged |  3.375 ms | 0.0039 ms | 0.0036 ms |  3.375 ms |  3.370 ms |  3.382 ms |           - |           - |           - |                64 B |
+| Scale2x_Unmanaged_Reference |  3.763 ms | 0.0050 ms | 0.0047 ms |  3.763 ms |  3.753 ms |  3.770 ms |           - |           - |           - |                64 B |
+|          Scale3x_FastBitmap | 13.659 ms | 0.0269 ms | 0.0239 ms | 13.656 ms | 13.626 ms | 13.704 ms |           - |           - |           - |              2048 B |
+|           Scale3x_Unmanaged |  7.196 ms | 0.0103 ms | 0.0092 ms |  7.194 ms |  7.183 ms |  7.212 ms |    500.0000 |      7.8125 |           - |              4096 B |
+| Scale3x_Unmanaged_Reference |  7.499 ms | 0.0078 ms | 0.0073 ms |  7.497 ms |  7.486 ms |  7.509 ms |    500.0000 |      7.8125 |           - |              4096 B |
