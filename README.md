@@ -14,6 +14,14 @@ Change the solution to Release.
 The ScaleX.Benchmarks has the benchmarks, set this as startup project.
 Run with Ctrl+F5
 
+The Scale2x_FastBitmap and Scale3x_FastBitmap tests are for the old and "current Greenshot code, using an implementation to directly go to the bitmap raw data.
+
+The tests Scale2x_Unmanaged_Reference & Scale3x_Unmanaged_Reference use my initial code using Span<T>, this is used as a reference.
+The Scale2x_Unmanaged & Scale3x_Unmanaged is used to make improvements, a few changes are already in there, using refs, which does seem to improve a bit.
+
+Besides being curious about what performance improvements are possible, one question does bother me:
+When running on **.NET 472** I noticed a huge increase vs dotnet core 3.0 in the Scale3x_Unmanaged memory usage (from 56 B to 4096 B), I would love to understand why!
+
 This is the current state for my Surface Pro 5 (2017) Core-5
 
 ``` ini
@@ -33,10 +41,6 @@ Intel Core i5-7300U CPU 2.60GHz (Kaby Lake), 1 CPU, 4 logical and 2 physical cor
 | Scale2x_Unmanaged_Reference |  1.971 ms | 0.0224 ms | 0.0187 ms |  1.929 ms |  1.999 ms |           - |           - |           - |                56 B |
 |          Scale3x_FastBitmap | 15.157 ms | 0.1383 ms | 0.1294 ms | 14.936 ms | 15.361 ms |           - |           - |           - |              2149 B |
 |           Scale3x_Unmanaged |  4.208 ms | 0.0461 ms | 0.0431 ms |  4.121 ms |  4.290 ms |    500.0000 |      7.8125 |           - |                56 B |
-
-The Scale2x_FastBitmap and Scale3x_FastBitmap is the old and "current Greenshot code.
-The Scale2x_Unmanaged & Scale3x_Unmanaged is the new code, whereas Scale2x_Unmanaged_Reference is just a copy of Scale2x_Unmanaged for reference so we can see if there is a different after changing.
-
 
 Running it on an old *Windows 7* PC:
 
@@ -74,6 +78,3 @@ Frequency=3020634 Hz, Resolution=331.0563 ns, Timer=TSC
 | Scale2x_Unmanaged_Reference |  3.668 ms | 0.0066 ms | 0.0059 ms |  3.659 ms |  3.679 ms |           - |           - |           - |                64 B |
 |          Scale3x_FastBitmap | 13.869 ms | 0.0458 ms | 0.0429 ms | 13.798 ms | 13.964 ms |           - |           - |           - |              2048 B |
 |           Scale3x_Unmanaged |  7.383 ms | 0.0119 ms | 0.0105 ms |  7.366 ms |  7.403 ms |    500.0000 |     39.0625 |           - |              4096 B |
-
-Besides being curious about what performance improvements are possible, one question does bother me:
-When running with .NET 472 I noticed a huge increase in the Scale3x_Unmanaged memory usage (from 56 B to 4096 B), I would love to understand why!
