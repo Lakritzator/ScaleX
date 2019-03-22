@@ -19,7 +19,7 @@ The Scale2x_FastBitmap and Scale3x_FastBitmap tests are for the old and "current
 The new implementation uses Span<T> and is using a single thread, which is faster and uses less CPU power. They also don't directly use System.Drawing.Bitmap, as an experiment.
 
 The tests Scale2x_Unmanaged_Reference & Scale3x_Unmanaged_Reference use my initial code , this is used as a reference.
-The Scale2x_Unmanaged & Scale3x_Unmanaged is a copy of the reference implementation, used to make improvements and being able to compare them, a few changes are already in there, using refs, which does seem to improve a bit.
+The [Scale2x_Unmanaged](https://github.com/Lakritzator/ScaleX/blob/master/src/ScaleX.Scaler/ScaleXUnmanaged.cs#L51) & [Scale3x_Unmanaged](https://github.com/Lakritzator/ScaleX/blob/master/src/ScaleX.Scaler/ScaleXUnmanaged.cs#L139) is a copy of the reference implementation, used to make improvements and being able to compare them, a few changes are already in there, using refs, which does seem to improve a bit.
 
 Besides being curious about what performance improvements are possible, one question does bother me:
 When running on **.NET 472** I noticed a huge increase vs dotnet core 3.0 in the Scale3x_Unmanaged memory usage (from 56 B to 4096 B), I would love to understand why!
